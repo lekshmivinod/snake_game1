@@ -5,6 +5,12 @@ import random
 
 
 delay=0.1
+
+#score
+score = 0
+high_score=0
+
+
 # screen stup
 
 wn = turtle.Screen()
@@ -17,7 +23,7 @@ wn.tracer(0) #terns screen off
 head=turtle.Turtle()
 head.speed(0)
 head.shape("square")
-head.color("green")
+head.color("purple")
 head.penup()
 head.goto(0,0)
 head.direction="left"
@@ -33,6 +39,16 @@ food.goto(0,100)
 
 
 segments=[]#initialy thebody segmenta only head.
+
+#pen
+pen=turtle.Turtle()
+pen.speed(0)
+pen.shape("square")
+pen.color("black")
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write("Score:0  High Score:0", align="center",font=("Courier", 24, "normal"))
 
 
 
@@ -103,10 +119,16 @@ while True:
         segments.clear()
 
 
+     #reset the score
+        score=0
+        pen.clear()
+        pen.write("Score: {}  High Score:{}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
 
 
 
-     # check for collision with food.each food posi adds sgment obody
+
+
+        # check for collision with food.each food posi adds sgment obody
 
     if head.distance(food) < 20:
         x=random.randint( -290, 290)  #move the foodtorandomplace, total600,600.cordinate system
@@ -120,6 +142,14 @@ while True:
         new_segment.color("green")
         new_segment.penup()
         segments.append(new_segment)
+
+        #increasescore
+        score+=10
+        if score >high_score:
+            high_score=score
+        pen.clear()
+        pen.write("Score: {}  High Score:{}".format(score, high_score),align="center",font=("Courier", 24, "normal"))
+
 
 
      #move the end segments first
@@ -149,6 +179,7 @@ while True:
 
                 # clear the segments list
             segments.clear()
+
 
 
     time.sleep(delay)
