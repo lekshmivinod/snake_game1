@@ -111,7 +111,7 @@ while True:
         head.goto(0,0)
         head.direction="stop"
 
-        #hide the segments
+        #hide the segmnts
         for segment in segments:
             segment.goto(1000,1000)
 
